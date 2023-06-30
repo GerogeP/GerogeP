@@ -5,7 +5,7 @@ require 'octokit'
 # Scrape blog posts from the website
 #url = "https://www.bengreenberg.dev/blog/"
 #url = "https://nextjs-blog-geodgepang-gmailcom.vercel.app"
-url = "https://nextjs-eljd.vercel.app/posts/georgepang"
+url = "https://nextjs-seven-lovat-69.vercel.app/posts/georgepang"
 response = HTTParty.get(url)
 parsed_page = Nokogiri::HTML(response.body)
 posts = parsed_page.css('.flex.flex-col.rounded-lg.shadow-lg.overflow-hidden')
