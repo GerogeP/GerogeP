@@ -1,133 +1,56 @@
 'use client'
 
 import NextLink from "next/link";
-
 import { usePathname } from 'next/navigation';
+import { useTheme } from 'next-themes';
+import ThemeToggle from "./themetoggle";
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const { theme } = useTheme();
 
   return (
-    <nav style={{
-      display: 'table !important',
-      width: '100% !important',
-      tableLayout: 'fixed',
-      height: '80px !important',
-      borderBottom: '1px solid #e2e8f0 !important',
-      backgroundColor: 'white !important',
-      boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05) !important',
-      position: 'relative',
-      zIndex: 1000
-    }}>
-      
+    <nav className="flex items-center justify-between w-full h-20 px-6 bg-white dark:bg-gray-900 border-b border-slate-200 dark:border-gray-700 shadow-sm relative z-50 transition-colors duration-300">
+
       {/* 左侧 Logo */}
-      <div style={{
-        display: 'table-cell !important',
-        width: '200px !important',
-        verticalAlign: 'middle !important',
-        paddingLeft: '24px !important',
-        textAlign: 'left' as any
-      }}>
-        <h1 style={{ 
-          fontSize: '20px !important', 
-          fontWeight: 'bold !important', 
-          color: '#1e293b !important',
-          margin: 0,
-          lineHeight: '1.2'
-        }}>Tutor Portal</h1>
+      <div className="flex-shrink-0 w-48 flex items-center">
+        <h1 className="text-xl font-bold text-slate-800 dark:text-slate-200 leading-tight transition-colors duration-300">
+          Tutor Portal
+        </h1>
       </div>
 
       {/* 中间导航链接 - 横向排列 */}
-      <div style={{
-        display: 'table-cell !important',
-        width: 'auto !important',
-        verticalAlign: 'middle !important',
-        textAlign: 'center' as any,
-        paddingLeft: '24px !important',
-        paddingRight: '24px !important'
-      }}>
-        <NextLink 
+      <div className="flex-1 flex items-center justify-center space-x-6 px-6">
+        <NextLink
           href="/dashboard"
-          style={{
-            display: 'inline-block !important',
-            padding: '8px 16px !important',
-            marginRight: '16px !important',
-            color: '#475569 !important',
-            textDecoration: 'none !important',
-            borderRadius: '6px !important',
-            transition: 'all 0.2s !important',
-            fontWeight: '500 !important',
-            whiteSpace: 'nowrap !important'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#2563eb';
-            e.currentTarget.style.backgroundColor = '#f8fafc';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#475569';
-            e.currentTarget.style.backgroundColor = 'transparent';
-          }}
+          className={`
+            px-4 py-2 rounded-md transition-all duration-200 font-medium whitespace-nowrap
+            ${pathname === '/dashboard'
+              ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+              : 'text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-gray-800'
+            }
+          `}
         >
           Dashboard
         </NextLink>
 
-        <NextLink 
+        <NextLink
           href="/login"
-          style={{
-            display: 'inline-block !important',
-            padding: '8px 16px !important',
-            color: '#475569 !important',
-            textDecoration: 'none !important',
-            borderRadius: '6px !important',
-            transition: 'all 0.2s !important',
-            fontWeight: '500 !important',
-            whiteSpace: 'nowrap !important'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#2563eb';
-            e.currentTarget.style.backgroundColor = '#f8fafc';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#475569';
-            e.currentTarget.style.backgroundColor = 'transparent';
-          }}
+          className={`
+            px-4 py-2 rounded-md transition-all duration-200 font-medium whitespace-nowrap
+            ${pathname === '/login'
+              ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+              : 'text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-gray-800'
+            }
+          `}
         >
           LogIn
         </NextLink>
       </div>
 
-      {/* 右侧登录按钮 */}
-      <div style={{
-        display: 'table-cell !important',
-        width: '120px !important',
-        verticalAlign: 'middle !important',
-        paddingRight: '24px !important',
-        textAlign: 'right'
-      }}>
-        {pathname !== '/login' && (
-          <NextLink 
-            href="/login"
-            style={{
-              display: 'inline-block !important',
-              padding: '8px 16px !important',
-              backgroundColor: '#2563eb !important',
-              color: 'white !important',
-              textDecoration: 'none !important',
-              borderRadius: '6px !important',
-              transition: 'all 0.2s !important',
-              fontWeight: '500 !important',
-              whiteSpace: 'nowrap !important'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#1d4ed8';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#2563eb';
-            }}
-          >
-            LogIn
-          </NextLink>
-        )}
+      {/* 右侧登录按钮和主题切换 */}
+      <div className="flex-shrink-0 w-32 flex items-center justify-end space-x-3">
+        <ThemeToggle />
       </div>
     </nav>
   );

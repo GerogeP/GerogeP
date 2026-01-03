@@ -31,17 +31,17 @@ const FilterBar: React.FC<FilterBarProps> = ({
   ];
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1">
-          <label htmlFor="filter" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300">
             Filter by Type
           </label>
           <select
             id="filter"
             value={selectedFilter}
             onChange={(e) => onFilterChange(e.target.value)}
-            className="w-full px-3 py-2 text-slate-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-3 py-2 text-slate-700 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-300"
           >
             {filterOptions.map(option => (
               <option key={option.value} value={option.value}>
@@ -52,14 +52,14 @@ const FilterBar: React.FC<FilterBarProps> = ({
         </div>
 
         <div className="flex-1">
-          <label htmlFor="month" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="month" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors duration-300">
             Filter by Month
           </label>
           <select
             id="month"
             value={selectedMonth}
             onChange={(e) => onMonthChange(e.target.value)}
-            className="w-full px-3 py-2 text-slate-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-3 py-2 text-slate-700 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-300"
           >
             {monthOptions.map(option => (
               <option key={option.value} value={option.value}>
@@ -75,7 +75,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
               onFilterChange('all');
               onMonthChange('');
             }}
-            className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 border border-gray-200 dark:border-gray-600"
           >
             Clear Filters
           </button>

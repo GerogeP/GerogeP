@@ -1,18 +1,20 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import { Lesson } from '../../types/lesson';
 import { lessonService } from '../../services/lessonService';
 import LessonCard from '../../components/LessonCard';
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen">
-    <div className="text-gray-500">Loading...</div>
+    <div className="text-gray-500 dark:text-gray-400 transition-colors duration-300">Loading...</div>
   </div>
 );
 import FilterBar from '../../components/FilterBar';
 import ProtectedRoute from '../../components/ProtectedRoute';
 
 const DashboardPage: React.FC = () => {
+  const { theme } = useTheme();
   const [allLessons, setAllLessons] = useState<Lesson[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -73,42 +75,30 @@ const DashboardPage: React.FC = () => {
 
   return (
     <ProtectedRoute>
-      <div
-        className="flex flex-col items-center m-20px space-y-8 border border-gray-300 rounded-md p-6"
-        style={{
-          display: 'table !important',
-          width: '100% !important',
-          tableLayout: 'fixed',
-          height: '80px !important',
-          borderBottom: '1px solid #e2e8f0 !important',
-          backgroundColor: 'white !important',
-          boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05) !important',
-          position: 'relative',
-          zIndex: 1000
-        }}
-      >
-        <div className="text-center w-fit mx-auto border-2 border-red-500 p-4">
-          <h1 className="text-3xl w-fit mx-auto font-bold text-gray-900 bg-blue-300">Tutor Dashboard</h1>
-          <p className="mt-2 w-fit mx-auto text-gray-600 bg-green-300">Manage your teaching schedule and available classes</p>
-        </div>
-
-        {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
-            <div className="text-red-800">{error}</div>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div className="flex flex-col items-center space-y-8 p-6">
+          <div className="text-center w-fit mx-auto border-2 border-red-500 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-colors duration-300">
+            <h1 className="text-3xl w-fit mx-auto font-bold text-gray-900 dark:text-white transition-colors duration-300">Tutor Dashboard</h1>
+            <p className="mt-2 w-fit mx-auto text-gray-600 dark:text-gray-300 transition-colors duration-300">Manage your teaching schedule and available classes</p>
           </div>
-        )}
 
-        <FilterBar
-          selectedFilter={selectedFilter}
-          selectedMonth={selectedMonth}
-          onFilterChange={setSelectedFilter}
-          onMonthChange={setSelectedMonth}
-        />
+          {error && (
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md p-4 transition-colors duration-300">
+              <div className="text-red-800 dark:text-red-200 transition-colors duration-300">{error}</div>
+            </div>
+          )}
 
-        {/* Today's Lessons Section */}
-        {todayLessons.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Today&apos;s Lessons</h2>
+          <FilterBar
+            selectedFilter={selectedFilter}
+            selectedMonth={selectedMonth}
+            onFilterChange={setSelectedFilter}
+            onMonthChange={setSelectedMonth}
+          />
+
+          {/* Today's Lessons Section */}
+          {todayLessons.length > 0 && (
+            <section className="w-full max-w-7xl">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 transition-colors duration-300">Today&apos;s Lessons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {todayLessons.map(lesson => (
                 <LessonCard
@@ -121,10 +111,10 @@ const DashboardPage: React.FC = () => {
           </section>
         )}
 
-        {/* Upcoming Lessons Section */}
-        {upcomingLessons.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Upcoming Lessons</h2>
+          {/* Upcoming Lessons Section */}
+          {upcomingLessons.length > 0 && (
+            <section className="w-full max-w-7xl">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 transition-colors duration-300">Upcoming Lessons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {upcomingLessons.map(lesson => (
                 <LessonCard
@@ -139,8 +129,8 @@ const DashboardPage: React.FC = () => {
 
         {/* Historic Lessons Section */}
         {historicLessons.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Historic Lessons</h2>
+            <section className="w-full max-w-7xl">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 transition-colors duration-300">Historic Lessons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {historicLessons.map(lesson => (
                 <LessonCard
@@ -153,27 +143,28 @@ const DashboardPage: React.FC = () => {
           </section>
         )}
 
-        {/* Available Lessons Section */}
-        {availableLessons.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Available Lessons</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {availableLessons.map(lesson => (
-                <LessonCard
-                  key={lesson.id}
-                  lesson={lesson}
-                  onTakeLesson={handleTakeLesson}
-                />
-              ))}
-            </div>
-          </section>
-        )}
+          {/* Available Lessons Section */}
+          {availableLessons.length > 0 && (
+            <section className="w-full max-w-7xl">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 transition-colors duration-300">Available Lessons</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {availableLessons.map(lesson => (
+                  <LessonCard
+                    key={lesson.id}
+                    lesson={lesson}
+                    onTakeLesson={handleTakeLesson}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
 
-        {filteredLessons.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No lessons match your current filters.</p>
-          </div>
-        )}
+          {filteredLessons.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 dark:text-gray-400 text-lg transition-colors duration-300">No lessons match your current filters.</p>
+            </div>
+          )}
+        </div>
       </div>
     </ProtectedRoute>
   );
