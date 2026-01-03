@@ -2,11 +2,11 @@
 
 ## 🎯 Overview
 
-This is a complete **Tutor Portal** implementation for Champ Code Academy.  
-The portal allows tutors to log in, view their teaching schedule, and take on available classes.
+In this case study, you will design and implement a **Tutor Portal** frontend for Champ Code Academy.  
+This portal will allow tutors to log in, view their teaching schedule, and take on available classes.
 
-This implementation provides a **clean, modern, and intuitive user interface** that connects to a FastAPI backend.  
-The solution demonstrates **frontend engineering, data handling, and design thinking** skills.
+Your goal is to create a **clean, modern, and intuitive user interface** that connects to a backend (FastAPI or mock API).  
+This challenge evaluates your **frontend engineering, data handling, and design thinking** skills.
 
 ---
 
@@ -41,62 +41,6 @@ The solution demonstrates **frontend engineering, data handling, and design thin
 5. **Backend Integration**
    - Connect to an API endpoint (FastAPI or mock JSON server) to fetch lesson data.
    - Handle loading states and errors gracefully.
-
----
-
-## 🚀 Implementation Details
-
-### ✅ What's Been Built
-
-This implementation includes:
-
-**Backend (FastAPI)**
-- Complete REST API with lesson management endpoints
-- Mock authentication system
-- CORS enabled for frontend integration
-- Comprehensive lesson data structure
-- Endpoints for filtering and lesson assignment
-
-**Frontend (Next.js + TypeScript)**
-- Modern, responsive design with Tailwind CSS
-- Login page with authentication
-- Protected dashboard with role-based access
-- Real-time lesson filtering and categorization
-- Interactive lesson cards with "Take Class" functionality
-- Loading states and error handling
-- Month and type-based filtering
-
-**Key Features Implemented**
-- ✅ Login Page with mock authentication
-- ✅ Tutor Dashboard with four lesson sections:
-  - Historic Lessons (completed)
-  - Upcoming Lessons 
-  - Available Lessons (with "Take Class" action)
-  - Today's Lessons
-- ✅ Monthly and Date Filters
-- ✅ Responsive UI/UX design
-- ✅ Backend API Integration
-- ✅ Error handling and loading states
-
-### 🏗️ Architecture
-
-```
-┌─────────────────┐    ┌─────────────────┐
-│   Next.js App   │◄──►│  FastAPI Backend│
-│                 │    │                 │
-│ • Login Page    │    │ • Lesson APIs   │
-│ • Dashboard     │    │ • Auth System   │
-│ • Components    │    │ • Data Models   │
-│ • Services      │    │ • Mock Data     │
-└─────────────────┘    └─────────────────┘
-```
-
-### 📊 Data Flow
-
-1. **Authentication**: User logs in → Backend validates → Frontend stores token
-2. **Data Fetching**: Dashboard loads → API calls → Data display
-3. **Filtering**: User selects filters → Frontend filtering → Updated display
-4. **Lesson Assignment**: User clicks "Take Class" → API call → Data refresh
 
 ---
 
@@ -214,90 +158,37 @@ Sample structure:
 
 ## 🧠 Deliverables
 
-### ✅ UI Components (COMPLETED)
-- [x] Login page with modern design
-- [x] Dashboard layout with header/navigation  
-- [x] Lesson card components with responsive grid
-- [x] Filter and month selector components
-- [x] Available lesson card with "Take Class" action
+### UI Components
+- [ ] Login page  
+- [ ] Dashboard layout with sidebar/topbar  
+- [ ] Lesson list/grid components  
+- [ ] Filter and month selector  
+- [ ] Available lesson card with “Take Class” action  
 
-### ✅ Functionality (COMPLETED)
-- [x] Data fetched from FastAPI backend
-- [x] Dynamic filtering by month/date
-- [x] Loading states and error handling
-- [x] Authentication and session management
+### Functionality
+- [ ] Data fetched from mock or live API  
+- [ ] Dynamic filtering by month/date  
+- [ ] Loading and error states  
+- [ ] State management for user session and lessons  
 
-### 🎨 Bonus Features Implemented
-- [x] Professional gradient design with Tailwind CSS
-- [x] Responsive mobile-first layout  
-- [x] Smooth transitions and hover effects
-- [x] TypeScript for type safety
-- [x] Modern component architecture
-- [x] Protected routes with authentication  
-
----
-
-## 🧑‍💻 Setup Instructions
-
-### Prerequisites
-- Node.js 18+ and npm
-- Python 3.8+ and pip
-
-### 1. Backend Setup (FastAPI)
-
-```bash
-# Navigate to backend directory
-cd backend
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Start the FastAPI server
-python app.py
-```
-
-The API will be available at `http://localhost:8000`
-
-### 2. Frontend Setup (Next.js)
-
-```bash
-# In a new terminal, from the project root
-cd /home/panglili/products/GerogeP
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-```
-
-The application will be available at `http://localhost:3000`
-
-### 3. Environment Configuration
-
-The `.env.local` file is already configured with:
-```
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
-
-For production deployment, update this URL accordingly.
-
-### 4. Login Credentials
-
-Use these credentials to access the tutor portal:
-- **Username:** `tutor`
-- **Password:** `password`
+### Optional Bonuses
+- [ ] Light/Dark mode toggle  
+- [ ] Calendar view (monthly grid)  
+- [ ] Responsive mobile layout  
+- [ ] Smooth transitions and animations  
 
 ---
 
 ## 🧑‍💻 Submission Guidelines
 
-- ✅ Complete implementation with both frontend and backend
-- ✅ Clean, modern code architecture with TypeScript
-- ✅ Comprehensive error handling and loading states
-- ✅ Responsive design with professional UI/UX
-- ✅ FastAPI backend with mock authentication
-- ✅ Protected routes and session management
+- Include this `README.md` in your repo  
+- Do **not** fork; create your own public repo  
+- First commit = clean boilerplate setup  
+- Deploy preview on **GitHub Pages** (bonus)  
+- Provide setup instructions:
+  - `npm install`
+  - `npm run dev`
+  - Optional: `.env.example` for API URLs
 
 ---
 
