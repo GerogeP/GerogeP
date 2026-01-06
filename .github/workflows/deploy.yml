@@ -29,5 +29,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        with:
-          publish_dir: ./out
+        # publish_dir 参数已移除，deploy-pages 会自动使用上传的 artifact
