@@ -7,6 +7,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write      # 部署到GitHub Pages
+      id-token: write   # 验证OIDC
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,6 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"  # ✅ 更新为Node.js 20，满足Next.js 16要求
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -25,8 +32,9 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './out'  # 👈 确保这里指向你的构建输出目录
+          path: out  # 使用相对路径（不带./）确保只上传out目录
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
         # publish_dir 参数已移除，deploy-pages 会自动使用上传的 artifact
