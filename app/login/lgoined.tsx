@@ -1,14 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
-import { LoginRequest } from '../../types/lesson';
 
 const LoginedPage: React.FC = () => {
-  const [credentials, setCredentials] = useState<LoginRequest>({
-    username: '',
-    password: ''
-  });
   const router = useRouter();
 
   return (
