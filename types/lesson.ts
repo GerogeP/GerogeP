@@ -10,6 +10,7 @@ export interface Lesson {
   students: string[];
   tutor: string | null;
   status: string;
+  difficulty?: string;
 }
 
 export interface LoginRequest {

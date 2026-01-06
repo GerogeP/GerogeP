@@ -1,6 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import mockLessonService from '../services/mockData';
+
+interface FilterOption {
+  value: string;
+  label: string;
+}
 
 interface FilterBarProps {
   selectedFilter: string;
@@ -15,12 +21,48 @@ const FilterBar: React.FC<FilterBarProps> = ({
   onFilterChange,
   onMonthChange
 }) => {
-  const monthOptions = [
-    { value: '', label: 'All Months' },
-    { value: '2025-10', label: 'October 2025' },
-    { value: '2025-11', label: 'November 2025' },
-    { value: '2025-12', label: 'December 2025' },
-  ];
+  const [monthOptions, setMonthOptions] = useState<FilterOption[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFilterOptions = async () => {
+      try {
+        const lessons = await mockLessonService.getLessons();
+
+        // 月份标签
+        const monthLabels = ['January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'];
+
+        // 从模拟数据中提取唯一的年份-月份组合
+        const yearMonths = new Set<string>();
+        lessons.forEach(lesson => {
+          // 处理ISO 8601格式日期 (如 2024-01-15T14:00:00Z)
+          const datePart = lesson.date.split('T')[0]; // 提取日期部分
+          const [year, month] = datePart.split('-');
+          yearMonths.add(`${year}-${month}`);
+        });
+
+        // 转换为年月选项数组并排序
+        const monthOpts: FilterOption[] = Array.from(yearMonths)
+          .sort((a, b) => a.localeCompare(b))
+          .map(yearMonth => {
+            const [year, month] = yearMonth.split('-');
+            return {
+              value: yearMonth,
+              label: `${year}年 ${monthLabels[parseInt(month) - 1]}`
+            };
+          });
+
+        setMonthOptions(monthOpts);
+      } catch (error) {
+        console.error('Failed to fetch filter options:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFilterOptions();
+  }, []);
 
   const filterOptions = [
     { value: 'all', label: 'All Lessons' },
@@ -59,8 +101,10 @@ const FilterBar: React.FC<FilterBarProps> = ({
             id="month"
             value={selectedMonth}
             onChange={(e) => onMonthChange(e.target.value)}
-            className="w-full px-3 py-2 text-slate-700 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-300"
+            disabled={loading}
+            className="w-full px-3 py-2 text-slate-700 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-300 disabled:opacity-50"
           >
+            <option value="">All Months</option>
             {monthOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}

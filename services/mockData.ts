@@ -1,96 +1,136 @@
 import { Lesson, LoginRequest, LoginResponse } from '../types/lesson';
 
-// 模拟数据 - 模拟课程数据
+// 模拟数据 - 模拟课程数据，分布在1-12月
 const mockLessons: Lesson[] = [
   {
     id: '1',
-    date: '2024-01-15',
+    date: '2024-01-15T14:00:00Z',
     type: 'Available',
     subject: 'Introduction to TypeScript',
     students: [],
-    tutor: 'John Smith',
-    status: 'Open for enrollment'
+    tutor: null,
+    status: 'Open for enrollment',
+    difficulty: 'beginner'
   },
   {
     id: '2',
-    date: '2024-01-16',
+    date: '2024-02-16T09:00:00Z',
     type: 'Upcoming',
     subject: 'React Advanced Patterns',
     students: ['Alice', 'Bob', 'Charlie'],
-    tutor: 'Jane Doe',
-    status: 'Confirmed'
+    tutor: 'John Smith',
+    status: 'Confirmed',
+    difficulty: 'advanced'
   },
   {
     id: '3',
-    date: '2024-01-10',
+    date: '2024-03-10T16:00:00Z',
     type: 'Historic',
     subject: 'Next.js 13 Masterclass',
     students: ['David', 'Eva', 'Frank', 'Grace'],
-    tutor: 'Bob Wilson',
-    status: 'Completed'
+    tutor: 'Jane Doe',
+    status: 'Completed',
+    difficulty: 'intermediate'
   },
   {
     id: '4',
-    date: new Date().toISOString().split('T')[0],
+    date: new Date().toISOString(),
     type: 'Today',
     subject: 'CSS Grid Layout',
     students: ['Henry', 'Ivy', 'Jack'],
-    tutor: 'Alice Brown',
-    status: 'In Progress'
+    tutor: 'Bob Wilson',
+    status: 'In Progress',
+    difficulty: 'beginner'
   },
   {
     id: '5',
-    date: new Date().toISOString().split('T')[0],
+    date: '2024-04-18T11:00:00Z',
     type: 'Today',
     subject: 'Node.js Performance',
     students: ['Kate', 'Leo'],
-    tutor: 'Charlie Davis',
-    status: 'Starting Soon'
+    tutor: 'Alice Brown',
+    status: 'Starting Soon',
+    difficulty: 'advanced'
   },
   {
     id: '6',
-    date: '2024-01-20',
+    date: '2024-05-20T11:00:00Z',
     type: 'Upcoming',
     subject: 'GraphQL Fundamentals',
     students: ['Mia', 'Noah', 'Olivia'],
-    tutor: 'Eva Green',
-    status: 'Confirmed'
+    tutor: 'Charlie Davis',
+    status: 'Confirmed',
+    difficulty: 'intermediate'
   },
   {
     id: '7',
-    date: '2024-01-05',
+    date: '2024-06-05T14:00:00Z',
     type: 'Historic',
     subject: 'Docker for Developers',
     students: ['Peter', 'Quinn', 'Rachel', 'Sam', 'Tina'],
-    tutor: 'Frank Miller',
-    status: 'Completed'
+    tutor: 'Eva Green',
+    status: 'Completed',
+    difficulty: 'intermediate'
   },
   {
     id: '8',
-    date: '2024-01-25',
+    date: '2024-07-25T10:00:00Z',
     type: 'Available',
     subject: 'AWS Cloud Essentials',
     students: [],
-    tutor: 'Grace Lee',
-    status: 'Open for enrollment'
+    tutor: null,
+    status: 'Open for enrollment',
+    difficulty: 'intermediate'
   },
   {
     id: '9',
-    date: new Date().toISOString().split('T')[0],
+    date: '2024-08-08T13:00:00Z',
     type: 'Today',
     subject: 'Testing with Jest',
     students: ['Uma', 'Victor'],
-    tutor: 'Henry Taylor',
-    status: 'Starting Soon'
+    tutor: 'Frank Miller',
+    status: 'Starting Soon',
+    difficulty: 'intermediate'
   },
   {
     id: '10',
-    date: '2024-01-18',
+    date: '2024-09-18T15:00:00Z',
     type: 'Upcoming',
     subject: 'MongoDB Basics',
     students: ['Wendy', 'Xavier', 'Yara', 'Zack'],
-    tutor: 'Ivy Chen',
-    status: 'Confirmed'
+    tutor: 'Grace Lee',
+    status: 'Confirmed',
+    difficulty: 'beginner'
+  },
+  {
+    id: '11',
+    date: '2024-10-22T13:00:00Z',
+    type: 'Available',
+    subject: 'Python for Data Science',
+    students: [],
+    tutor: null,
+    status: 'Open for enrollment',
+    difficulty: 'beginner'
+  },
+  {
+    id: '12',
+    date: '2024-11-08T10:00:00Z',
+    type: 'Historic',
+    subject: 'Vue.js Fundamentals',
+    students: ['Nick', 'Opal'],
+    tutor: 'Henry Taylor',
+    status: 'Completed',
+    difficulty: 'intermediate'
+  },
+  {
+    id: '13',
+    date: '2024-12-12T09:00:00Z',
+    type: 'Upcoming',
+    subject: 'Machine Learning Basics',
+    students: ['Quinn', 'Rose'],
+    tutor: 'Sarah Johnson',
+    status: 'Confirmed',
+    difficulty: 'advanced'
   }
 ];
 

@@ -109,7 +109,7 @@ const DashboardPage: React.FC = () => {
               ))}
             </div>
           </section>
-        )}
+          )}
 
           {/* Upcoming Lessons Section */}
           {upcomingLessons.length > 0 && (
@@ -125,7 +125,7 @@ const DashboardPage: React.FC = () => {
               ))}
             </div>
           </section>
-        )}
+          )}
 
         {/* Historic Lessons Section */}
         {historicLessons.length > 0 && (
