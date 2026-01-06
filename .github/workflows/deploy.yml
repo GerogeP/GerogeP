@@ -12,9 +12,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20"  # ✅ 更新为Node.js 20，满足Next.js 16要求
 
       - name: Install dependencies
         run: npm ci
@@ -26,3 +26,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './out'  # 👈 确保这里指向你的构建输出目录
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          publish_dir: ./out
