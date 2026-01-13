@@ -248,7 +248,9 @@ export const mockLessonService = {
   // 登出
   logout(): void {
     localStorage.removeItem('authToken');
-    window.location.href = '/login';
+    // Use relative path or get basePath from window
+    const basePath = window.location.pathname.split('/')[1] || '';
+    window.location.href = basePath ? `/${basePath}/login` : '/login';
   }
 };
 

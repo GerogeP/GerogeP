@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { lessonService } from '../../services/lessonService';
 
 const LoginedPage: React.FC = () => {
   const router = useRouter();
@@ -14,12 +15,18 @@ const LoginedPage: React.FC = () => {
             Already Logged In
           </h2>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 space-y-4">
           <button
-            onClick={() => router.push('/')}
+            onClick={() => router.push('/dashboard')}
             className="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
           >
-            Go to Home
+            Go to ashboard
+          </button>
+          <button
+            onClick={() => lessonService.logout()}
+            className="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-300"
+          >
+            Logout and re-login
           </button>
         </div>
       </div>

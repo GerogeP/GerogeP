@@ -31,7 +31,9 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       // Handle unauthorized access
       localStorage.removeItem('authToken');
-      window.location.href = '/login';
+      // Use relative path or get basePath from window
+      const basePath = window.location.pathname.split('/')[1] || '';
+      window.location.href = basePath ? `/${basePath}/login` : '/login';
     }
     return Promise.reject(error);
   }
@@ -126,7 +128,9 @@ export const lessonService = {
       return;
     }
     localStorage.removeItem('authToken');
-    window.location.href = '/login';
+    // Use relative path or get basePath from window
+    const basePath = window.location.pathname.split('/')[1] || '';
+    window.location.href = basePath ? `/${basePath}/login` : '/login';
   }
 };
 
